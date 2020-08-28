@@ -7,20 +7,32 @@
                 <div class="card">
                     <div class="card-header">Dashboard</div>
                     <div class="card-body">
+
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
                         <div class="sticky-top bg-white">
-                            <div class="custom-input">
-                                <input type="file" class="custom-file-input mt-1" id="inputGroupFile01"
-                                       aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label mt-1" for="inputGroupFile01">Choose file for upload</label>
-                            </div>
+
+                                <form id="upload-form" method="post" action="/upload" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="input-group">
+
+                                        <div class="custom-file">
+                                            <input multiple name="upload[]" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                            <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button onClick = "document.getElementById('upload-form').submit()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
                             <div class="py-2 d-none d-flex">
-                                <button type="button" class="btn btn-success btn-lg flex-fill mr-1">Download</button>
-                                <button type="button" class="btn btn-danger btn-lg flex-fill ml-1">Delete</button>
+                                <button type="button" id="download-button" class="btn btn-success btn-lg flex-fill mr-1">Download</button>
+                                <button type="button" id="delete-button" class="btn btn-danger btn-lg flex-fill ml-1">Delete</button>
                             </div>
                         </div>
 
@@ -98,151 +110,18 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($files as $file)
                             <tr>
                                 <th scope="row">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
+                                        <input data-id = "{{$file->id}}" class ="form-check-input" type="checkbox" value="option1">
                                     </div>
                                 </th>
-                                <td class="item-filename">retard</td>
-                                <td class="item-size" data-kbsize = "200" >200</td>
-                                <td class="item-date">@mdo</td>
+                                <td class="item-filename">{{$file->real_name}}</td>
+                                <td class="item-size" data-kbsize = "{{$file->size}}" >{{$file->formattedSize()}}</td>
+                                <td class="item-date">{{$file->created_at}}</td>
                             </tr>
-                            <tr class="table-primary">
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" checked value="checked">
-                                    </div>
-                                </th>
-                                <td class="item-filename">Mark</td>
-                                <td class="item-size" data-kbsize = "300" >300</td>
-                                <td class="item-date">@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
-
-                                    </div>
-                                </th>
-                                <td class="item-filename">bih</td>
-                                <td class="item-size">Ottfo</td>
-                                <td class="item-date">@mdo</td>
-                            </tr>
-                            <tr class="table-primary">
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" checked value="checked">
-                                    </div>
-                                </th>
-                                <td class="item-filename">ark</td>
-                                <td class="item-size" data-kbsize = "400" >400</td>
-                                <td class="item-date">@mfsado</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
-
-                                    </div>
-                                </th>
-                                <td>Jacob</td>
-                                <td class="item-size" data-kbsize = "500" >500</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
-
-                                    </div>
-                                </th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
-
-                                    </div>
-                                </th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="option1">
-
-                                    </div>
-                                </th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                             <div>
 

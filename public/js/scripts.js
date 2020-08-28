@@ -1,4 +1,6 @@
 (function () {
+
+    const table = $("#files-table");
     const el = $('#back-to-top');
     function showTooltip() {
         if (el.is(":visible") && $(".tooltip").length === 0) {
@@ -37,6 +39,27 @@
             selectAll = false;
         });
 
+        $("#delete-button").on("click", function(){
+            const checkboxes = $("#files-table tbody :checked");
+            if (checkboxes.length === 0) return;
+
+            let ids = "";
+            for (let box of checkboxes){
+                ids+= $(box).attr("data-id")+",";
+            }
+            $.ajax({
+                data:{
+                    "_token":$("[name=csrf-token]").attr("content"),
+                    "ids":ids
+                },
+                url: "/files/delete",
+                method: "post"
+            }).done((response)=>{
+                window.location.pathname = window.location.pathname;
+            })
+
+        })
+
         $("#files-table tbody tr").on("click", function () {
             let checkbox = $(":checkbox", this);
 
@@ -64,7 +87,6 @@
         });
     }
 
-    const table = $("#files-table");
     function sortBy(col) {
 
         const sort = function (by, order) {
