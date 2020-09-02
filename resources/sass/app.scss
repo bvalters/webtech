@@ -6,7 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-.back-to-top {
+
+
+#back-to-top {
     cursor: pointer;
     position: fixed;
     bottom: 20px;
@@ -14,3 +16,50 @@
     display:none;
 }
 
+.dropdown-menu {
+    z-index: 1030 !important;
+}
+
+.edit-btn, .link-btn {
+    display: none;
+}
+
+.edit-icon {
+    margin-bottom: 15px;
+}
+
+#files-table tbody > tr {
+    cursor: pointer;
+    & > th, & > td {
+        vertical-align: middle;
+    }
+    & > td:last-child {
+        font-size: 17px;
+        min-width: 41px;
+    }
+    .edit-icon, .link-icon {
+        //: calc(0.75rem + 27px);
+    }
+    &:hover {
+        .edit-btn, .link-btn {
+            display: block;
+        }
+    }
+}
+
+.sortable {
+    cursor: pointer;
+    position: relative;
+    span {
+        padding-right: 10px;
+    }
+    .table-icons {
+        position: absolute;
+        right: 0;
+    }
+}
+
+.btn-wrapper {
+    width: 50%;
+    margin: auto;
+}

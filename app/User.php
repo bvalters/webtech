@@ -40,4 +40,7 @@ class User extends Authenticatable
     public function files(){
         return $this->hasMany("App\File");
     }
+    public function order(){
+        return $this->hasOne("App\Order");
+    }
 }

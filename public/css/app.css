@@ -10928,11 +10928,62 @@ a.text-dark:focus {
   }
 }
 
-.back-to-top {
+#back-to-top {
   cursor: pointer;
   position: fixed;
   bottom: 20px;
   right: 20px;
   display: none;
+}
+
+.dropdown-menu {
+  z-index: 1030 !important;
+}
+
+.edit-btn,
+.link-btn {
+  display: none;
+}
+
+.edit-icon {
+  margin-bottom: 15px;
+}
+
+#files-table tbody > tr {
+  cursor: pointer;
+}
+
+#files-table tbody > tr > th,
+#files-table tbody > tr > td {
+  vertical-align: middle;
+}
+
+#files-table tbody > tr > td:last-child {
+  font-size: 17px;
+  min-width: 41px;
+}
+
+#files-table tbody > tr:hover .edit-btn,
+#files-table tbody > tr:hover .link-btn {
+  display: block;
+}
+
+.sortable {
+  cursor: pointer;
+  position: relative;
+}
+
+.sortable span {
+  padding-right: 10px;
+}
+
+.sortable .table-icons {
+  position: absolute;
+  right: 0;
+}
+
+.btn-wrapper {
+  width: 50%;
+  margin: auto;
 }
 
